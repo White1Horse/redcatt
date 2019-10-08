@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/redcatt?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    password: 123456aA
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+mybatis:
+  mapper-locations: classpath:mapper/*

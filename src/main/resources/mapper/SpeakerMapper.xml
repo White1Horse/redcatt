@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redcatt.dao.SpeakerMapper">
+    <select id="speakerAdd" resultType="com.redcatt.pojo.Speaker">
+        insert into speaker(speakerSN, partSN, glueSN, glueAmount,userName,speakerDate)
+        values
+        <foreach collection="part" item="item" separator=",">
+            (
+             #{speaker.speakerSN}, #{item},#{speaker.glueSN}, #{speaker.glueAmount}, #{speaker.userName},#{speaker.speakerDate}
+            )
+        </foreach>
+    </select>
+
+    <select id="speakerSelect" resultType="com.redcatt.pojo.Speaker">
+        select * from speaker
+        <where>
+            <if test="speakerSN != null and speakerSN != '' "> speakerSN = #{speakerSN} </if>
+        </where>
+        order by speakerSN desc ,speakerDate desc
+    </select>
+</mapper>

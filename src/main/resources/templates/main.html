@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+    <title>输入界面</title>
+    <style>
+        body {
+            background: url(/img_bg_05.jpeg) no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #CCCCCC;
+            position: relative;
+
+        }
+    </style>
+</head>
+<body>
+<center>
+    <h1>信息录入界面(Information Entry Interface)</h1>
+    <p style="color: red;margin-left: 70px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <br><br><br><br>
+    <form action="/speakerAdd" method="post" id="form1">
+        <table>
+            <tr>
+                <td>产品条码(produce S/N)</td>
+                <td><input type="text" name="speakerSN"></td>
+            </tr>
+            <tr>
+                <td>部件1条码(Part1 S/N)</td>
+                <td><input type="text" name="part"></td>
+            </tr>
+
+            <tr>
+                <td>部件2条码(Part2 S/N)</td>
+                <td><input type="text" name="part"></td>
+            </tr>
+            <tr>
+                <td>部件3条码(Part3 S/N)</td>
+                <td><input type="text" name="part"></td>
+            </tr>
+            <tr>
+                <td>部件4条码(Part4 S/N)</td>
+                <td><input type="text" name="part"></td>
+            </tr>
+            <tr>
+                <td>胶水条码(Glue S/N)</td>
+                <td><input type="text" name="glueSN"></td>
+            </tr>
+            <tr>
+                <td>胶水用量(Glue Amount)</td>
+                <td><input type="text" name="glueAmount"></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align: right">
+                    <input type="submit" value="确定(confirm)">
+                </td>
+                <td style="text-align: left">
+                    <a href="/select.html"><input type="button" value="去查询产品信息(Go Product Information Query)"></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+<script>
+    document.addEventListener("keydown", handleEnter)
+    var index = 0
+    function handleEnter(e) {
+        if (e.keyCode === 13) {
+            e.preventDefault()
+            let cur_dom = document.activeElement
+            if (cur_dom.tagName != 'INPUT') {
+                cur_dom = document.querySelector('input')
+                cur_dom.focus()
+                index = 0
+            } else {
+                let inputs = document.getElementsByTagName('input')
+                for (let i in inputs) {
+                    if (inputs[i] === cur_dom) index = i
+                }
+                index++
+                if (index > inputs.length - 1) {
+                    index = 0
+                }
+                let next_dom = inputs[index]
+                next_dom.focus()
+            }
+        }
+    }
+</script>
+</html>

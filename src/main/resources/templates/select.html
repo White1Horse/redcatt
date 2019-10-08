@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查询信息</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url(/img_bg_05.jpeg) no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #CCCCCC;
+            position: relative;
+
+        }
+
+        #top {
+            width: 100%;
+            height: 60px;
+            top: 30px;
+        }
+
+        #bottom {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        span {
+            font-size: 20px;
+            text-align: center;
+            display: block;
+        }
+        tr td{
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <h1>产品信息查询</h1>
+</div>
+<div id="bottom">
+    <div>
+        <form action="/speakerSelect" method="post">
+            <span>产品条码：</span> <input type="text" name="speakerSN" size=30 height=15>
+            <input type="submit" value="查询"><a href="main.html"> <input type="button" value="去录入信息"></a>
+        </form>
+    </div>
+    <div style="margin-top: 20px">
+        <span>产品信息：</span>
+        <table border="1" style="border-collapse: collapse;margin: auto;width: 1000px">
+           <tr>
+               <td>扬声器编号(product S/N)</td>
+               <td>部件编号(part S/N</td>
+               <td>胶水编号(glue S/N)</td>
+               <td>胶水用量(glueAmount)</td>
+               <td>操作人员(Username)</td>
+               <td>操作日期(Date)</td>
+           </tr>
+            <tr th:each="list : ${speakerList}">
+                <td>[[${list.speakerSN}]]</td>
+                <td>[[${list.partSN}]]</td>
+                <td>[[${list.glueSN}]]</td>
+                <td>[[${list.glueAmount}]]</td>
+                <td>[[${list.userName}]]</td>
+                <td>[[${list.speakerDate}]]</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

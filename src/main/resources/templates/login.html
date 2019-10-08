@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>产品追踪系统</title>
+    <style type="text/css">
+        body {
+            background: url(/img_bg_02.jpg) no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #CCCCCC;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <br><br>
+    <h1 style="color:red">产品追踪登录系统(Product Tracking Login System)</h1>
+    <br><br>
+    <form id="indexform" name="indexform" action="login" method="post">
+        <table border="0">
+            <tr>
+                <td height="30">用户名(Username)：</td>
+                <td><input type="text" name="userName"></td>
+            </tr>
+            <tr>
+                <td>密码(Password)：</td>
+                <td><input type="password" name="passWord"></td>
+            </tr>
+        </table>
+        <br><br>
+        <p style="color: red;margin-left: 70px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+        <input type="submit" value="登录(login)" style="color:#BC8F8F;margin-left:70px;">
+        <a href="/regist.html"> <input type="button" value="去注册(Go regist)" style="color:#BC8F8F; margin-left:30px;"></a>
+    </form>
+</center>
+</body>
+</html>
